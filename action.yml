@@ -1,0 +1,28 @@
+# action.yml
+name: 'git-filter-repo-push'
+description: 'Runs git-filter-repo and pushes the result to a target using ssh'
+inputs:
+    privateKey:
+        description: 'Private SSH Key for pushing to the target repo'
+        required: true
+    targetOrg:
+        description: 'The github organization (or user) of the target repository'
+        required: true
+    targetRepo:
+        description: 'The target repository'
+        required: true
+    targetBranch:
+        description: 'The target branch'
+        required: true
+    filterArguments:
+        description: 'The raw arguments to pass to git-filter-repo'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    SSH_PRIVATE_KEY: ${{ inputs.privateKey }}
+    TARGET_ORG: ${{ inputs.targetOrg }}
+    TARGET_REPO: ${{ inputs.targetRepo }}
+    TARGET_BRANCH: ${{ inputs.targetBranch }}
+  args:
+    - ${{ inputs.filterArguments }}
