@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+set -e
 
 # Set up ssh known hosts and agent
 ssh-keyscan -t rsa github.com >> /etc/ssh/ssh_known_hosts
