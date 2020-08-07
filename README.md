@@ -21,7 +21,6 @@ jobs:
       with:
         fetch-depth: 0
     - name: git-filter-repo
-      id: filter
       uses: wmde/git-filter-repo-docker-action@v1
       with:
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
